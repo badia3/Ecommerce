@@ -1,0 +1,113 @@
+<!-- <div class="container mt-5">
+    <div class="card p-2">
+        <div class="row">
+            <div class="col-6">
+
+                <form>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Product Name</mat-label>
+                        <input matInput placeholder="Product Name">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Product Description</mat-label>
+                        <input matInput placeholder="Product Description">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Product Actual Price</mat-label>
+                        <input matInput placeholder="Actual Price">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Product Discounted Price</mat-label>
+                        <input matInput placeholder="Discounted Price">
+                    </mat-form-field>
+                    <div>
+                        <button mat-stroked-button color="primary">Add Product</button>
+                        <button mat-stroked-button color="primary">Clear</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-6">
+                image area
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<body>
+    <div class="container tm-mt-big tm-mb-big">
+        <div class="row">
+            <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+                <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="tm-block-title d-inline-block">Add Product</h2>
+                        </div>
+
+                    </div>
+                    <div class="row tm-edit-product-row">
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <form [formGroup]="productForm" class="tm-edit-product-form">
+                                <div class="form-group mb-3">
+                                    <label for="name">Product Name
+                                    </label>
+                                    <input class="form-control validate"
+                                     placeholder="Product Name"
+                                      required
+                                      formControlName= "productName"
+                                      name="productName" />
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="description">Description</label>
+                                    <input class="form-control validate"
+                                     placeholder="Product Description"
+                                      required
+                                      formControlName= "productDescription"
+                                      name="productDescription"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="name">Product Actual Price
+                                    </label>
+                                    <input class="form-control validate"
+                                     placeholder="Actual Price"
+                                      required
+                                      formControlName= "productDiscountedPrice"
+                                      name="productActualPrice"
+                                      type="number"/>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="name">Product Discounted Price
+                                    </label>
+                                    <input class="form-control validate"
+                                     placeholder="Discounted Price"
+                                      required
+                                      formControlName= "productActualPrice"
+                                      name="productDiscountedPrice"
+                                      type="number"/>
+                                </div>
+                            </form>
+                            <div class="col-20">
+                                <button (click)="addProduct()" [disabled]="!productForm.valid" class="btn margin btn-primary btn-block text-uppercase">Add Product Now</button>
+                                <button (click)="productForm.reset" class="btn margin btn-primary btn-block text-uppercase">Clear</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                        <div class="tm-product-img-dummy mx-auto">
+                            <i class="fas fa-cloud-upload-alt tm-upload-icon"
+                                onclick="document.getElementById('fileInput').click();"></i>
+                        </div>
+                        <div class="custom-file mt-3 mb-3">
+                            <input id="fileInput" type="file" style="display:none;" />
+                            <input type="button" class="btn btn-primary btn-block mx-auto" value="UPLOAD PRODUCT IMAGE"
+                                onclick="document.getElementById('fileInput').click();" />
+                        </div>
+                    </div> -->

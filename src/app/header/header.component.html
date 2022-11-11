@@ -1,0 +1,21 @@
+
+        <nav>
+            <a href="#"><img src="assets/images/commerce.png" alt=""></a>
+            <div class="nav-links">
+                <ul>
+                    <li><a class="nav-item" href="#">HOME</a></li>
+                    <li><a class="nav-item" href="#">ABOUT</a></li>
+                    <li><a class="nav-item" href="#">CONTACT</a></li>
+                    <li><button class="nav-item my-btn" *ngIf="!isLoggedIn()" type="button" routerLink="/login">Login</button></li>
+                    <li><button class="nav-item my-btn" *ngIf="isLoggedIn()" type="button" (click)="logout()">Logout</button></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="position nav-links" *ngIf="isLoggedIn()">
+            <ul>
+                <li><button class="nav-item my-btn" type="button" routerLink="/">Home</button></li>
+                <li><button class="nav-item my-btn" *ngIf="isAdmin()" type="button" routerLink="/addNewProduct">Add New Product</button></li>
+            </ul>
+        </div>
+
