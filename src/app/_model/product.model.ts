@@ -1,6 +1,9 @@
+import { FileHandele } from "./file.model";
+
 export interface Product{
     productName: String | null,
     productDescription: String | null,
     productDiscountedPrice: number | null,
-    productActualPrice: number | null
+    productActualPrice: number | null,
+    productImages: FileHandele[]
 }

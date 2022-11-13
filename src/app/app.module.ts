@@ -21,9 +21,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DragDirective } from './drag.directive';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomeComponent,
     LoginComponent,
     UserComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    DragDirective
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    MatGridListModule
   ],
   providers: [
     AuthGuard,
