@@ -51,14 +51,13 @@ export class AddNewProductComponent implements OnInit,OnChanges {
     productImages: this.productForm.get('productImages')?.value ?? [],
   };
 
-  addProduct(productForm: NgForm) {
+  addProduct() {
     const prepareFormData = this.prepareFormData(this.product);
 
     this.productService.addProduct(prepareFormData).subscribe(
       (response: any) => {
         console.log(response);
-        //this.productForm.patchValue({productName: ''});
-        //productForm.resetForm(this.productForm.getRawValue());
+        
       },
       (error: HttpErrorResponse) => {
         console.log(error);
