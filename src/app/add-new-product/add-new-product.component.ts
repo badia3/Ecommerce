@@ -6,6 +6,7 @@ import { FileHandele } from '../_model/file.model';
 import { Product } from '../_model/product.model';
 import { ProductService } from '../_services/product.service';
 
+
 @Component({
   selector: 'app-add-new-product',
   templateUrl: './add-new-product.component.html',
@@ -15,6 +16,8 @@ export class AddNewProductComponent implements OnInit,OnChanges {
 
   constructor(private productService: ProductService,
     private sanitizer: DomSanitizer) { }
+    uploadedPics: any[]=[];
+    profilePic: any;
 
   ngOnInit(): void {
   }
@@ -26,83 +29,75 @@ export class AddNewProductComponent implements OnInit,OnChanges {
   productForm = new FormGroup({
     productName: new FormControl("", Validators.required),
     productDescription: new FormControl("", Validators.required),
-    productDiscountedPrice: new FormControl("", Validators.required),
-    productActualPrice: new FormControl("", Validators.required),
+    productDiscountedPrice: new FormControl(null, Validators.required),
+    productActualPrice: new FormControl(null, Validators.required),
     productImage: new FormControl(null,Validators.required),
   })
   get productDiscountedPrice() {
     if (this.productForm.get('productDiscountedPrice')?.value)
       return +this.productForm.get('productDiscountedPrice')?.value!
     else
-      return null
+      return null!
   }
   get productActualPrice(){
     if (this.productForm.get('productActualPrice')?.value)
       return +this.productForm.get('productActualPrice')?.value!
     else
-      return null
+      return null!
   }
 
-   product: Product = {
-    productName: this.productForm.get('productName')?.value ?? '',
-    productDescription:this.productForm.get('productDescription')?.value ?? '',
-    productDiscountedPrice: this.productDiscountedPrice,
-    productActualPrice: this.productActualPrice,
-    productImages: this.productForm.get('productImages')?.value ?? [],
-  };
+
+
+
 
   addProduct() {
-    const prepareFormData = this.prepareFormData(this.product);
+    var product= new FormData();
+    this.uploadedPics.forEach(pic => {
+      product.append("imageFile",pic)
+    })
+    product.append("product",
+    new Blob([JSON.stringify({
+      "productName": this.productForm.get('productName')?.value ?? '',
+      "productDescription": this.productForm.get('productDescription')?.value ?? '',
+      "productDiscountedPrice": this.productDiscountedPrice,
+      "productActualPrice":this.productActualPrice,
+    })], {
+    type: 'application/json'
+  }))
 
-    this.productService.addProduct(prepareFormData).subscribe(
+
+    this.productService.addProduct(product).subscribe(
       (response: any) => {
         console.log(response);
-        
       },
       (error: HttpErrorResponse) => {
         console.log(error);
       }
     );
     this.productForm.reset();
-
-
   }
 
-prepareFormData(product: Product): FormData{
-  const formData = new FormData();
-  formData.append('product',
-  new Blob([JSON.stringify(product)],{type: 'application/json'})
-  );
-  for(var i =0;i<product.productImages.length;i++){
-    formData.append(
-      'imageFile',
-      product.productImages[i].file,
-      product.productImages[i].file.name
-    )
-  }
-  return formData;
+  onChangeProfilePic(event: any) {
+    const reader = new FileReader();
+      this.uploadedPics.push(event.target.files[0]);
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = () => {
+        this.profilePic = reader.result;
+      }
+    };
+
+showImage(file: any){
+  return this.sanitizer.bypassSecurityTrustUrl(
+        window.URL.createObjectURL(file)
+       )
 }
 
-
-  onFileSelected(event: any){
-    if(event.target.files){
-      const file = event.target.files[0];
-
-      const fileHandele : FileHandele = {
-        file:file,
-        url: this.sanitizer.bypassSecurityTrustUrl(
-          window.URL.createObjectURL(file)
-        )
-      }
-      this.product.productImages.push(fileHandele)
-    }
-
+removeImage(i:number){
+    this.uploadedPics.splice(i,1);
   }
-  removeImage(i:number){
-    this.product.productImages.splice(i,1);
-  }
-  fileDropped(fileHandele: FileHandele){
-    this.product.productImages.push(fileHandele);
+fileDropped(file : any){
+  this.uploadedPics.push(file.target.file[0]);
 
-  }
+}
+
 }

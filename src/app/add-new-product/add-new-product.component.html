@@ -48,9 +48,9 @@
 
                     </div>
                     <div class="row tm-edit-product-row">
-                        <div class="col-xl-6 col-lg-6 col-md-12" >
-                            <!-- <form  #productForm="ngForm" class="tm-edit-product-form"> -->
-                                <form  [formGroup]="productForm" class="tm-edit-product-form" >
+                        <div class="col-md-12" >
+                                <form  [formGroup]="productForm" class="tm-edit-product-form test">
+                                    <div class="align col-md-4">
                                 <div class="form-group mb-3">
                                     <label for="name">Product Name
                                     </label>
@@ -71,64 +71,50 @@
                                 <div class="form-group mb-3">
                                     <label for="name">Product Actual Price
                                     </label>
-                                    <input class="form-control validate"
+                                    <input
+                                     class="form-control validate"
+                                     type="number"
                                      placeholder="Actual Price"
                                       required
                                       formControlName= "productDiscountedPrice"
                                       name="productActualPrice"
-                                      type="number"/>
+                                      />
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="name">Product Discounted Price
                                     </label>
                                     <input class="form-control validate"
-                                     placeholder="Discounted Price"
+                                      type="number"
+                                      placeholder="Discounted Price"
                                       required
                                       formControlName= "productActualPrice"
                                       name="productDiscountedPrice"
-                                      type="number"/>
+                                      />
                                 </div>
-                                <div class="col-6">
+                            </div>
+                                <div class="col-8">
                                     <div>
-
-                                        <div class="dropzone"
-                                        appDrag
-                                        (files)="fileDropped($event)">
-
-                                            <div class="image-center">
-                                                <img (click)="selectFile.click()" src="assets/images/upload.png" alt="">
-
-                                            </div>
-
-                                        </div>
-
-
-
-                                        <input formControlName="productImage" type="file" multiple value="select"
-                                    #selectFile
-                                    (change)="onFileSelected($event)"
-                                    style="display: none;">
-
+                                        <input class="input-file" type="file" accept="image/*"
+                                         (change)="onChangeProfilePic($event)"
+                                         >
                                     </div>
-                                    <div class="mt-5">
+                                      <div class="mt-5">
                                         <div class="row">
-                                            <mat-grid-list cols="3" rowHeight="1:1">
-                                                <mat-grid-tile *ngFor="let file of product.productImages;let i = index">
-
-                                                    <div style="position: relative">
-                                                        <img [src]="file.url" width="150px" height="150px">
-                                                        <span class="btn-remove-image" (click)="removeImage(i)">x</span>
+                                            <div class="images-container">
+                                                <div *ngFor="let pic of uploadedPics;let i= index;">
+                                                    <div class="image">
+                                                        <img [src]="showImage(pic)">
+                                                         <span class="btn-remove-image" (click)="removeImage(i)">x</span>
                                                     </div>
-                                                </mat-grid-tile>
-                                            </mat-grid-list>
+                                                </div>
+                                            </div>
                                         </div>
-
                                     </div>
 
                                 </div>
                             </form>
                             <div class="col-20">
-                                <button (click)="addProduct()" [disabled]="!productForm.valid" class="btn margin btn-primary btn-block text-uppercase">Add Product Now</button>
+                                <button (click)="addProduct()" class="btn margin btn-primary btn-block text-uppercase">Add Product Now</button>
                                 <button (click)="productForm.reset()" class="btn margin btn-primary btn-block text-uppercase">Clear</button>
                             </div>
                         </div>
