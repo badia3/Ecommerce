@@ -13,6 +13,11 @@ public addProduct(product: FormData) {
   return this.httpClient.post<Product>("http://localhost:9090/addNewProduct",product);
 
 }
-
+public getAllProducts(){
+  return this.httpClient.get<Product[]>("http://localhost:9090/getAllProducts");
+}
+public deleteProduct(productId: number){
+  return this.httpClient.delete("http://localhost:9090/deleteProduct/"+productId);
+}
 
 }

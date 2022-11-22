@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAuthService } from '../_services/user-auth.service';
 import { UserService } from '../_services/user.service';
+import { faDashboard,faCog,faUser,faShoppingBasket,faFileArrowUp,faFileAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,13 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+
+  faDashboard = faDashboard;
+  faCog = faCog;
+  faUser = faUser;
+  faShoppingBasket= faShoppingBasket;
+  faFileAlt= faFileAlt;
+
   constructor(
     private userAuthService: UserAuthService,
     private router: Router,

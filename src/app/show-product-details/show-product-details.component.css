@@ -1,0 +1,26 @@
+table{
+    width: 100%;
+
+}
+
+body{
+    background-color: #54657d;
+}
+.tab-position{
+    position: absolute;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.icon-delete{
+    color: red;
+
+}
+.icon-edit{
+    color: rgb(2, 238, 2);
+
+}
+.btn-test{
+    border: none;
+}
+
+

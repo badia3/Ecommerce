@@ -1,4 +1,3 @@
-
         <nav>
             <a href="#"><img src="assets/images/commerce.png" alt=""></a>
             <div class="nav-links">
@@ -12,10 +11,73 @@
             </div>
         </nav>
 
-        <div class="position nav-links" *ngIf="isLoggedIn()">
+
+
+        <ul class="ul-class" *ngIf="isLoggedIn() && isAdmin()">
+            <a class="admin-title-nav" routerLink="/">
+                <h1 class="">Product Admin</h1>
+              </a>
+            <li class="li-class">
+                <a>
+                    <div class="icon">
+                        <fa-icon [icon]="faDashboard" class="icon-size"></fa-icon>
+                        <i class="fa-solid fa-gauge-high"></i>
+
+
+                    </div>
+                    <div class="name" data-text="Dashboard">Dashboard</div>
+                </a>
+            </li>
+
+            <li class="li-class">
+                <a>
+                    <div class="icon">
+                        <fa-icon [icon]="faFileAlt" class="icon-size"></fa-icon>
+
+                    </div>
+                    <div class="name" data-text="Reports">Reports</div>
+                </a>
+            </li>
+
+            <li class="li-class">
+                <a routerLink="/addNewProduct">
+                    <div class="icon">
+                        <fa-icon [icon]="faShoppingBasket" class="icon-size"></fa-icon>
+
+                    </div>
+                    <div class="name" data-text="Products">Add Products</div>
+                </a>
+            </li>
+
+            <li class="li-class">
+                <a routerLink="/showProductDetatails">
+                    <div class="icon">
+                        <fa-icon [icon]="faUser" class="icon-size"></fa-icon>
+
+                    </div>
+                    <div class="name" data-text="Add Products">Show Products</div>
+                </a>
+            </li>
+
+            <li class="li-class">
+                <a>
+                    <div class="icon">
+                        <fa-icon [icon]="faCog" class="icon-size"></fa-icon>
+
+                    </div>
+                    <div class="name" data-text="Settings">Settings</div>
+                </a>
+            </li>
+        </ul>
+
+
+
+
+
+        <!-- <div class="position nav-links" *ngIf="isLoggedIn()">
             <ul>
                 <li><button class="nav-item my-btn" type="button" routerLink="/">Home</button></li>
                 <li><button class="nav-item my-btn" *ngIf="isAdmin()" type="button" routerLink="/addNewProduct">Add New Product</button></li>
             </ul>
-        </div>
+        </div> -->
 

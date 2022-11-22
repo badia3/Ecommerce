@@ -69,12 +69,14 @@ export class AddNewProductComponent implements OnInit,OnChanges {
     this.productService.addProduct(product).subscribe(
       (response: any) => {
         console.log(response);
+        this.productForm.reset();
+        this.uploadedPics = [];
       },
       (error: HttpErrorResponse) => {
         console.log(error);
       }
     );
-    this.productForm.reset();
+
   }
 
   onChangeProfilePic(event: any) {

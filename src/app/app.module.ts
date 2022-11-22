@@ -25,6 +25,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DragDirective } from './drag.directive';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ShowProductDetailsComponent } from './show-product-details/show-product-details.component';
+import {MatTableModule} from '@angular/material/table';
+
+
 
 @NgModule({
   declarations: [
@@ -36,7 +41,8 @@ import { DragDirective } from './drag.directive';
     LoginComponent,
     UserComponent,
     ForbiddenComponent,
-    DragDirective
+    DragDirective,
+    ShowProductDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +57,9 @@ import { DragDirective } from './drag.directive';
     MatInputModule,
     ReactiveFormsModule,
     NgbModule,
-    MatGridListModule
+    MatGridListModule,
+    FontAwesomeModule,
+    MatTableModule
   ],
   providers: [
     AuthGuard,
